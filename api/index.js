@@ -5,10 +5,14 @@ import dotenv from 'dotenv'
 import taskRoutes from './routes/taskRoutes.js'
 
 import { notFoundMiddleware } from './middlewares/notFound.js';
+import { connectDB, mongoOff, mongoOn } from './db/connect.js';
 
 const app = express()
 dotenv.config()
 
+
+mongoOn();
+mongoOff();
 
 // Routes
 app.use('/api/v1/task', taskRoutes)
@@ -18,5 +22,6 @@ app.use(notFoundMiddleware)
 
 const port = process.env.port || 5001
 app.listen(port, () => {
+  connectDB()
   console.log(`server listening on port ${port}`);
 })
