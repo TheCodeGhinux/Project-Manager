@@ -10,6 +10,7 @@ import { connectDB, mongoOff, mongoOn } from './db/connect.js';
 const app = express()
 dotenv.config()
 
+app.use(express.json())
 
 mongoOn();
 mongoOff();
